@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Caminho do Investidor — Ebook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-950:#071A30;
+    --navy-900:#0B2545;
+    --navy-800:#0F2E56;
+    --navy-700:#16386A;
+    --gold-600:#B4842E;
+    --gold-500:#C9973E;
+    --gold-300:#E7C98C;
+    --gold-100:#F2E4C6;
+    --cream-50:#FBF8F2;
+    --cream-100:#F3EEE1;
+    --ink-900:#1B1F27;
+    --ink-600:#4B5361;
+    --ink-400:#8891A0;
+    --green-600:#1E7F4F;
+    --line-light:#E4DECD;
+    --line-dark:rgba(255,255,255,.14);
+    --shadow-gold: 0 10px 30px -10px rgba(201,151,62,.45);
+    --radius: 2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--ink-900);
+    background:var(--cream-50);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  .container{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    color:var(--navy-900);
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:.02em;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-weight:500;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background:currentColor;
+    display:inline-block;
+  }
+  section{position:relative;}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:17px 34px;
+    font-family:'Inter', sans-serif;
+    font-weight:700;
+    font-size:16px;
+    border-radius:3px;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    white-space:nowrap;
+  }
+  .btn-gold{
+    background:linear-gradient(180deg, var(--gold-500), var(--gold-600));
+    color:var(--navy-950);
+    box-shadow:var(--shadow-gold);
+  }
+  .btn-gold:hover{ transform:translateY(-2px); box-shadow:0 16px 34px -10px rgba(201,151,62,.55);}
+  .btn-outline{
+    border-color:rgba(255,255,255,.35);
+    color:#fff;
+  }
+  .btn-outline:hover{ background:rgba(255,255,255,.08); }
+  .btn small{
+    display:block;
+    font-weight:500;
+    font-size:11.5px;
+    opacity:.8;
+    margin-top:2px;
+  }
+
+  /* ---------- Header ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(7,26,48,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line-dark);
+  }
+  .topbar-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+    max-width:1120px; margin:0 auto;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    color:#fff;
+    font-size:17px;
+    font-weight:600;
+  }
+  .brand span{color:var(--gold-300);}
+  .topbar .btn{ padding:11px 22px; font-size:14px; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:
+      radial-gradient(ellipse 900px 500px at 82% -10%, rgba(201,151,62,.16), transparent 60%),
+      linear-gradient(180deg, var(--navy-950), var(--navy-900) 55%, var(--navy-800));
+    color:#fff;
+    padding:88px 0 0;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:40px;
+    align-items:center;
+    padding-bottom:60px;
+  }
+  .hero .eyebrow{ color:var(--gold-300); margin-bottom:22px;}
+  .hero h1{
+    font-size:clamp(38px, 5vw, 60px);
+    line-height:1.04;
+    color:#fff;
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--gold-300);
+  }
+  .hero p.lead{
+    font-size:18px;
+    color:#C9D2E0;
+    max-width:480px;
+    margin-bottom:34px;
+  }
+  .hero-ctas{
+    display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+    margin-bottom:38px;
+  }
+  .hero-trust{
+    display:flex; gap:26px; flex-wrap:wrap;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:#9FADC4;
+  }
+  .hero-trust b{ color:#fff; display:block; font-size:15px; font-family:'Fraunces',serif; font-weight:600;}
+
+  /* hero path illustration */
+  .hero-art{ position:relative; height:460px; }
+  .hero-art svg{ width:100%; height:100%; overflow:visible; }
+  .path-line{
+    fill:none; stroke:var(--gold-500); stroke-width:2.5;
+    stroke-dasharray:900; stroke-dashoffset:900;
+    animation:draw 2.4s ease forwards .3s;
+  }
+  @keyframes draw{ to{stroke-dashoffset:0;} }
+  .path-dot{ fill:var(--navy-950); stroke:var(--gold-300); stroke-width:2; }
+  .path-dot.filled{ fill:var(--gold-500); stroke:var(--gold-500); }
+  .path-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; fill:#B9C4D6; letter-spacing:.03em;
+  }
+  .path-label.strong{ fill:var(--gold-300); font-weight:600; }
+
+  .ticker{
+    border-top:1px solid var(--line-dark);
+    background:rgba(255,255,255,.03);
+    overflow:hidden;
+    padding:14px 0;
+  }
+  .ticker-track{
+    display:flex; gap:48px; white-space:nowrap;
+    animation:scroll-left 26s linear infinite;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; color:#8FA0BC;
+  }
+  .ticker-track span b{ color:var(--gold-300); font-weight:600; }
+  @keyframes scroll-left{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+
+  /* ---------- Problem section ---------- */
+  .problem{ background:var(--cream-50); padding:100px 0; }
+  .problem .eyebrow{ color:var(--gold-600); margin-bottom:18px; }
+  .problem h2{ font-size:clamp(28px,3.4vw,40px); max-width:640px; margin-bottom:18px; }
+  .problem p.sub{ color:var(--ink-600); max-width:560px; font-size:16.5px; margin-bottom:56px; }
+  .problem-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--line-light);
+    border:1px solid var(--line-light);
+  }
+  .problem-card{
+    background:var(--cream-50);
+    padding:34px 30px;
+  }
+  .problem-card .mark{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--gold-600); font-size:13px; margin-bottom:16px; display:block;
+  }
+  .problem-card h3{ font-size:19px; margin-bottom:10px; color:var(--navy-900); }
+  .problem-card p{ color:var(--ink-600); font-size:14.5px; }
+
+  /* ---------- Trail / What's inside ---------- */
+  .trail-section{ background:var(--navy-950); color:#fff; padding:110px 0 90px; }
+  .trail-section .eyebrow{ color:var(--gold-300); margin-bottom:18px; }
+  .trail-section h2{ color:#fff; font-size:clamp(28px,3.4vw,42px); max-width:600px; margin-bottom:14px; }
+  .trail-section p.sub{ color:#AFBBCF; max-width:560px; margin-bottom:70px; font-size:16.5px; }
+
+  .trail{
+    position:relative;
+    display:grid;
+    grid-template-columns:64px 1fr;
+    column-gap:28px;
+  }
+  .trail-rail{
+    position:relative;
+    width:2px;
+    justify-self:center;
+    background:rgba(255,255,255,.14);
+  }
+  .trail-fill{
+    position:absolute; top:0; left:0; width:100%;
+    background:linear-gradient(180deg, var(--gold-300), var(--gold-600));
+    height:0%;
+    transition:height .1s linear;
+  }
+  .trail-steps{ display:flex; flex-direction:column; gap:56px; }
+  .trail-step{
+    position:relative;
+    padding-bottom:2px;
+  }
+  .trail-num{
+    position:absolute;
+    left:-78px; top:-2px;
+    width:44px; height:44px;
+    border-radius:50%;
+    background:var(--navy-900);
+    border:1.5px solid rgba(255,255,255,.25);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px; color:#B9C4D6;
+    z-index:2;
+  }
+  .trail-step.active .trail-num{
+    background:var(--gold-500); border-color:var(--gold-500); color:var(--navy-950); font-weight:700;
+  }
+  .trail-step h3{ color:#fff; font-size:21px; margin-bottom:8px; font-weight:600;}
+  .trail-step p{ color:#AFBBCF; font-size:15px; max-width:600px; }
+  .trail-tag{
+    display:inline-block; margin-top:12px;
+    font-family:'IBM Plex Mono', monospace; font-size:11px;
+    color:var(--gold-300); border:1px solid rgba(231,201,140,.35);
+    padding:4px 10px; border-radius:20px;
+  }
+
+  /* ---------- For who ---------- */
+  .forwho{ background:var(--cream-50); padding:100px 0; }
+  .forwho-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+  .forwho .eyebrow{ color:var(--gold-600); margin-bottom:18px; }
+  .forwho h2{ font-size:clamp(26px,3vw,36px); margin-bottom:24px; }
+  .check-list{ list-style:none; display:flex; flex-direction:column; gap:16px; }
+  .check-list li{ display:flex; gap:14px; font-size:15.5px; color:var(--ink-900); }
+  .check-list li::before{
+    content:"✓"; flex:0 0 auto;
+    width:24px; height:24px; border-radius:50%;
+    background:var(--green-600); color:#fff;
+    font-size:13px; display:flex; align-items:center; justify-content:center;
+    margin-top:1px;
+  }
+  .not-list li::before{
+    content:"—"; background:transparent; color:var(--ink-400); border:1px solid var(--line-light);
+  }
+  .not-list li{ color:var(--ink-600); }
+
+  /* ---------- Glossary preview strip ---------- */
+  .glossary-strip{
+    background:var(--navy-900);
+    color:#fff;
+    padding:70px 0;
+    border-top:1px solid var(--line-dark);
+    border-bottom:1px solid var(--line-dark);
+  }
+  .glossary-strip .container{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:50px; align-items:center;
+  }
+  .glossary-strip .eyebrow{ color:var(--gold-300); margin-bottom:16px; }
+  .glossary-strip h2{ color:#fff; font-size:clamp(24px,3vw,32px); margin-bottom:14px;}
+  .glossary-strip p{ color:#AFBBCF; font-size:15.5px; }
+  .term-cloud{ display:flex; flex-wrap:wrap; gap:10px; }
+  .term-chip{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px;
+    border:1px solid rgba(255,255,255,.18);
+    padding:8px 14px; border-radius:20px; color:#D7DEEA;
+  }
+
+  /* ---------- Pricing ---------- */
+  .pricing{ background:var(--cream-50); padding:110px 0; }
+  .pricing .eyebrow{ color:var(--gold-600); display:block; text-align:center; justify-content:center; margin-bottom:18px; }
+  .pricing h2{ text-align:center; font-size:clamp(28px,3.4vw,40px); max-width:600px; margin:0 auto 50px; }
+  .price-card{
+    max-width:560px; margin:0 auto;
+    background:#fff;
+    border:1px solid var(--line-light);
+    border-top:4px solid var(--gold-500);
+    padding:46px 44px;
+    box-shadow:0 30px 60px -30px rgba(11,37,69,.25);
+  }
+  .price-card .book-title{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--gold-600);
+    letter-spacing:.08em; text-transform:uppercase; margin-bottom:6px;
+  }
+  .price-card h3{ font-size:26px; margin-bottom:22px; }
+  .price-row{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px; }
+  .price-old{ color:var(--ink-400); text-decoration:line-through; font-size:17px; font-family:'IBM Plex Mono', monospace;}
+  .price-new{ font-family:'Fraunces', serif; font-size:44px; color:var(--navy-900); font-weight:700; }
+  .price-note{ color:var(--ink-600); font-size:13.5px; margin-bottom:28px; }
+  .price-card .check-list{ margin-bottom:32px; }
+  .price-card .check-list li{ font-size:14.5px; }
+  .price-card .btn{ width:100%; }
+  .price-guarantee{
+    display:flex; align-items:center; gap:12px;
+    margin-top:22px; padding-top:22px; border-top:1px solid var(--line-light);
+    font-size:13px; color:var(--ink-600);
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq{ background:var(--cream-50); padding:0 0 110px; }
+  .faq h2{ text-align:center; font-size:clamp(26px,3vw,34px); margin-bottom:44px; }
+  .faq-list{ max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:1px; background:var(--line-light); border:1px solid var(--line-light); }
+  details{ background:var(--cream-50); }
+  summary{
+    list-style:none; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:22px 26px; font-weight:600; font-size:15.5px; color:var(--navy-900);
+  }
+  summary::-webkit-details-marker{ display:none; }
+  summary::after{
+    content:"+"; font-family:'IBM Plex Mono', monospace; font-size:20px; color:var(--gold-600);
+    transition:transform .2s ease;
+  }
+  details[open] summary::after{ transform:rotate(45deg); }
+  .faq-body{ padding:0 26px 24px; color:var(--ink-600); font-size:14.5px; max-width:640px; }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    background:linear-gradient(180deg, var(--navy-900), var(--navy-950));
+    color:#fff; text-align:center; padding:100px 0;
+  }
+  .final-cta .eyebrow{ color:var(--gold-300); justify-content:center; margin-bottom:20px; }
+  .final-cta h2{ color:#fff; font-size:clamp(30px,4vw,46px); max-width:680px; margin:0 auto 18px; }
+  .final-cta p{ color:#AFBBCF; max-width:480px; margin:0 auto 36px; font-size:16px;}
+
+  /* ---------- Footer ---------- */
+  footer{ background:var(--navy-950); color:#8391A8; padding:40px 0; border-top:1px solid var(--line-dark); }
+  footer .container{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  footer p{ font-size:12.5px; max-width:640px; }
+  .disclaimer{ font-size:11.5px; color:#5E6B82; max-width:900px; margin:22px auto 0; text-align:center; line-height:1.7;}
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 880px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-art{ height:280px; order:-1; }
+    .problem-grid{ grid-template-columns:1fr; }
+    .forwho-grid{ grid-template-columns:1fr; gap:40px; }
+    .glossary-strip .container{ grid-template-columns:1fr; }
+    .trail{ grid-template-columns:40px 1fr; column-gap:16px; }
+    .trail-num{ left:-52px; width:36px; height:36px; font-size:12px; }
+    .price-card{ padding:34px 26px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .path-line{ animation:none; stroke-dashoffset:0; }
+    .ticker-track{ animation:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">O Caminho <span>do Investidor</span></div>
+    <a href="#comprar" class="btn btn-gold" style="padding:10px 20px; font-size:13.5px;">Quero o meu exemplar</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">Educação financeira para iniciantes</span>
+      <h1>Organize seu dinheiro.<br>Aprenda a investir.<br><em>Comece hoje.</em></h1>
+      <p class="lead">Um guia direto ao ponto para quem nunca investiu — sem economês, sem enrolação. Da primeira dívida quitada à sua primeira carteira montada.</p>
+      <div class="hero-ctas">
+        <a href="#comprar" class="btn btn-gold">
+          Quero começar agora
+        </a>
+        <a href="#caminho" class="btn btn-outline">Ver o que tem dentro</a>
+      </div>
+      <div class="hero-trust">
+        <div><b>7</b>capítulos práticos</div>
+        <div><b>15</b>dicas de investimento</div>
+        <div><b>PDF</b>acesso imediato</div>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <svg viewBox="0 0 420 460" preserveAspectRatio="xMidYMid meet">
+        <path class="path-line" d="M40 420 C 120 420, 60 320, 140 300 S 240 200, 220 160 S 340 90, 380 40" />
+        <circle class="path-dot filled" cx="40" cy="420" r="6"/>
+        <text class="path-label strong" x="56" y="424">Dívidas quitadas</text>
+
+        <circle class="path-dot filled" cx="140" cy="300" r="6"/>
+        <text class="path-label" x="156" y="304">Reserva de emergência</text>
+
+        <circle class="path-dot filled" cx="220" cy="160" r="6"/>
+        <text class="path-label" x="236" y="164">Primeiros investimentos</text>
+
+        <circle class="path-dot" cx="380" cy="40" r="7"/>
+        <text class="path-label strong" x="330" y="24">Carteira montada</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="ticker">
+    <div class="ticker-track">
+      <span>Reserva de emergência <b>3 a 6 meses</b></span>
+      <span>Tesouro Direto · CDB · LCI · LCA</span>
+      <span>Ações · FIIs · ETFs</span>
+      <span>Juros compostos <b>a favor de você</b></span>
+      <span>15 dicas práticas de investimento</span>
+      <span>Glossário completo do investidor</span>
+      <span>Reserva de emergência <b>3 a 6 meses</b></span>
+      <span>Tesouro Direto · CDB · LCI · LCA</span>
+      <span>Ações · FIIs · ETFs</span>
+      <span>Juros compostos <b>a favor de você</b></span>
+      <span>15 dicas práticas de investimento</span>
+      <span>Glossário completo do investidor</span>
+    </div>
+  </div>
+</header>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="container">
+    <span class="eyebrow">O problema não é falta de vontade</span>
+    <h2>É difícil começar quando ninguém te ensinou por onde.</h2>
+    <p class="sub">Investir parece assunto pra quem já tem dinheiro sobrando — ou pra quem entende de siglas e planilhas. Não é bem assim.</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <span class="mark">01</span>
+        <h3>Termos técnicos demais</h3>
+        <p>CDI, IPCA, FGC, liquidez... o vocabulário sozinho já afasta quem só queria começar a guardar dinheiro.</p>
+      </div>
+      <div class="problem-card">
+        <span class="mark">02</span>
+        <h3>Conteúdo genérico</h3>
+        <p>Vídeos e posts soltos, sem uma ordem clara — você aprende pedaços, mas nunca o caminho completo.</p>
+      </div>
+      <div class="problem-card">
+        <span class="mark">03</span>
+        <h3>Medo de errar</h3>
+        <p>Sem entender o básico, é fácil cair em decisões por impulso ou promessas de rentabilidade fácil demais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAIL / WHAT'S INSIDE -->
+<section class="trail-section" id="caminho">
+  <div class="container">
+    <span class="eyebrow">O que tem dentro do ebook</span>
+    <h2>Um caminho, não uma lista solta de dicas.</h2>
+    <p class="sub">Cada capítulo é um passo — na ordem em que você realmente precisa dar, começando de onde você está agora.</p>
+
+    <div class="trail">
+      <div class="trail-rail"><div class="trail-fill" id="trailFill"></div></div>
+      <div class="trail-steps" id="trailSteps">
+
+        <div class="trail-step"><div class="trail-num">01</div>
+          <h3>Organizando as finanças pessoais</h3>
+          <p>Como sair das dívidas caras, montar um orçamento simples e construir sua reserva de emergência.</p>
+          <span class="trail-tag">Capítulo 1</span>
+        </div>
+
+        <div class="trail-step"><div class="trail-num">02</div>
+          <h3>A mentalidade do investidor</h3>
+          <p>Perfil de investidor, juros compostos e a diferença real entre gastar, poupar e investir.</p>
+          <span class="trail-tag">Capítulo 2</span>
+        </div>
+
+        <div class="trail-step"><div class="trail-num">03</div>
+          <h3>Renda fixa sem mistério</h3>
+          <p>Tesouro Direto, CDB, LCI, LCA e fundos de renda fixa, explicados em linguagem simples.</p>
+          <span class="trail-tag">Capítulo 3</span>
+        </div>
+
+        <div class="trail-step"><div class="trail-num">04</div>
+          <h3>Renda variável na prática</h3>
+          <p>Ações, Fundos Imobiliários e ETFs — o que são e quando fazem sentido para você.</p>
+          <span class="trail-tag">Capítulo 4</span>
+        </div>
+
+        <div class="trail-step"><div class="trail-num">05</div>
+          <h3>15 dicas práticas</h3>
+          <p>Um checklist direto para guiar suas decisões de investimento no dia a dia.</p>
+          <span class="trail-tag">Capítulo 5</span>
+        </div>
+
+        <div class="trail-step"><div class="trail-num">06</div>
+          <h3>Erros comuns de iniciante</h3>
+          <p>Os tropeços mais frequentes de quem está começando — e como evitar cada um deles.</p>
+          <span class="trail-tag">Capítulo 6</span>
+        </div>
+
+        <div class="trail-step"><div class="trail-num">07</div>
+          <h3>Sua primeira carteira</h3>
+          <p>Um passo a passo completo para montar sua carteira de investimentos, alinhada ao seu perfil.</p>
+          <span class="trail-tag">Capítulo 7</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHO -->
+<section class="forwho">
+  <div class="container forwho-grid">
+    <div>
+      <span class="eyebrow">Para quem é</span>
+      <h2>Feito para quem está começando de verdade.</h2>
+      <ul class="check-list">
+        <li>Você nunca investiu e não sabe por onde começar</li>
+        <li>Você já tentou entender o assunto, mas desistiu no meio</li>
+        <li>Você quer organizar as finanças antes de dar o próximo passo</li>
+        <li>Você já investe um pouco, mas sente que falta uma base sólida</li>
+      </ul>
+    </div>
+    <div>
+      <span class="eyebrow" style="color:var(--ink-400);">Não é para</span>
+      <h2 style="color:var(--ink-600); font-size:26px;">Quem busca fórmula mágica.</h2>
+      <ul class="check-list not-list">
+        <li>Promessas de enriquecimento rápido ou "dicas quentes" de mercado</li>
+        <li>Quem já é investidor avançado e busca análises técnicas complexas</li>
+        <li>Consultoria financeira personalizada — este é um material educativo</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- GLOSSARY STRIP -->
+<section class="glossary-strip">
+  <div class="container">
+    <div>
+      <span class="eyebrow">Bônus incluso</span>
+      <h2>Glossário completo do investidor</h2>
+      <p>Volte sempre que precisar. Todos os termos do mercado financeiro, explicados em uma linguagem que qualquer pessoa entende — sem economês.</p>
+    </div>
+    <div class="term-cloud">
+      <span class="term-chip">CDI</span>
+      <span class="term-chip">Liquidez</span>
+      <span class="term-chip">Rentabilidade</span>
+      <span class="term-chip">Diversificação</span>
+      <span class="term-chip">Volatilidade</span>
+      <span class="term-chip">Dividendos</span>
+      <span class="term-chip">FGC</span>
+      <span class="term-chip">IPCA</span>
+      <span class="term-chip">Selic</span>
+      <span class="term-chip">Carteira</span>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="comprar">
+  <div class="container">
+    <span class="eyebrow">Acesso imediato</span>
+    <h2>Tudo o que você precisa para dar o primeiro passo.</h2>
+
+    <div class="price-card">
+      <div class="book-title">Ebook · PDF · 19 páginas</div>
+      <h3>O Caminho do Investidor</h3>
+
+      <div class="price-row">
+        <span class="price-old">R$ 47,90</span>
+        <span class="price-new">R$ 27<span style="font-size:20px;">,90</span></span>
+      </div>
+      <p class="price-note">Pagamento único · acesso vitalício ao arquivo</p>
+
+      <ul class="check-list">
+        <li>7 capítulos práticos, do zero à primeira carteira</li>
+        <li>15 dicas objetivas de investimento</li>
+        <li>Glossário completo do investidor</li>
+        <li>Leitura direta em qualquer celular, tablet ou computador</li>
+      </ul>
+
+      <a href="#" class="btn btn-gold">
+        Quero o meu exemplar agora
+      </a>
+
+      <div class="price-guarantee">
+        🔒 Compra processada com segurança pela Cakto.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <h2>Perguntas frequentes</h2>
+    <div class="faq-list">
+      <details open>
+        <summary>Preciso ter algum conhecimento prévio? <span></span></summary>
+        <div class="faq-body">Não. O ebook foi escrito justamente para quem nunca investiu e quer começar do zero, com uma linguagem simples e direta.</div>
+      </details>
+      <details>
+        <summary>Em que formato recebo o material?</summary>
+        <div class="faq-body">Em PDF, com acesso imediato após a confirmação do pagamento. Você pode ler no celular, tablet ou computador.</div>
+      </details>
+      <details>
+        <summary>O ebook indica quais investimentos eu devo fazer?</summary>
+        <div class="faq-body">Não. O conteúdo é educativo — ele te ensina os conceitos e como pensar sobre suas próprias decisões, mas não constitui recomendação de investimento personalizada.</div>
+      </details>
+      <details>
+        <summary>Como funciona o acesso após a compra?</summary>
+        <div class="faq-body">Assim que o pagamento é aprovado pela Cakto, você recebe o link de download por e-mail, com acesso liberado imediatamente.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <span class="eyebrow">Chega de adiar</span>
+    <h2>O melhor momento para começar foi ontem.<br>O segundo melhor é agora.</h2>
+    <p>Organize suas finanças e dê o primeiro passo como investidor ainda hoje.</p>
+    <a href="#comprar" class="btn btn-gold">Quero começar agora</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="brand" style="font-size:15px;">O Caminho <span>do Investidor</span></div>
+    <p>Material educativo sobre finanças pessoais e investimentos.</p>
+  </div>
+  <p class="disclaimer">
+    Este material tem finalidade exclusivamente educativa e informativa. Não constitui recomendação de investimento,
+    consultoria financeira ou oferta de qualquer produto. Rentabilidades e simulações apresentadas são ilustrativas
+    e não representam garantia de resultados futuros. Antes de investir, avalie sua situação financeira e, se
+    necessário, consulte um profissional certificado.
+  </p>
+</footer>
+
+<script>
+  // Fill the trail line as the user scrolls through the "what's inside" section,
+  // echoing the book's own idea of a step-by-step path.
+  const trailSection = document.querySelector('.trail');
+  const trailFill = document.getElementById('trailFill');
+  const steps = document.querySelectorAll('.trail-step');
+
+  function updateTrail(){
+    const rect = trailSection.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const total = rect.height;
+    let progressPx = (vh * 0.75) - rect.top;
+    progressPx = Math.max(0, Math.min(progressPx, total));
+    const pct = total > 0 ? (progressPx / total) * 100 : 0;
+    trailFill.style.height = pct + '%';
+
+    steps.forEach((step) => {
+      const r = step.getBoundingClientRect();
+      if (r.top < vh * 0.78) step.classList.add('active');
+    });
+  }
+  window.addEventListener('scroll', updateTrail, { passive: true });
+  window.addEventListener('resize', updateTrail);
+  updateTrail();
+</script>
+
+</body>
+</html>
